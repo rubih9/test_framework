@@ -1,76 +1,194 @@
-# API Automation Test Framework
+# API测试框架
 
-一个强大的接口自动化测试框架，支持以下特性：
+一个简单但功能强大的API测试框架，支持Excel和YAML格式的测试用例，提供美观的HTML测试报告和邮件通知功能。
 
-- 📝 从Excel文件读取测试用例
-- 🔄 支持场景化测试（如：创建-查询-删除等连贯操作）
-- 📊 自动生成HTML测试报告
-- 📧 邮件通知功能
-- 📝 完整的日志记录
-- ⚙️ 灵活的配置管理
+## 特性
+
+- 支持Excel和YAML格式的测试用例
+- 支持多平台API测试
+- 支持变量提取和引用
+- 支持深度响应验证
+- 美观的HTML测试报告
+- 邮件通知功能
+- 完善的日志记录
+- 异步HTTP请求
+- 自动重试机制
 
 ## 安装
+
+1. 克隆仓库：
+
+```bash
+git clone https://github.com/yourusername/api-test-framework.git
+cd api-test-framework
+```
+
+安装依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 目录结构
+## 配置
 
-``` text
-test_framework/
-├── config/                 # 配置文件目录
-│   ├── config.yaml        # 主配置文件
-│   └── email_config.yaml  # 邮件配置
-├── testcases/             # 测试用例目录
-│   └── test_cases.xlsx    # Excel测试用例
-├── logs/                  # 日志目录
-├── reports/               # 测试报告目录
-├── lib/                   # 框架核心库
-└── run.py                 # 启动文件
-```
-
-## Excel用例格式
-
-测试用例Excel文件包含以下列：
-
-- `case_id`: 用例ID
-- `scenario`: 场景名称
-- `step`: 步骤序号
-- `description`: 用例描述
-- `api`: 接口路径
-- `method`: 请求方法(GET/POST/PUT/DELETE)
-- `headers`: 请求头
-- `data`: 请求数据
-- `expected`: 预期结果
-- `extract`: 需要提取的变量
-- `depends`: 依赖的步骤
-
-## 运行测试
-
-```bash
-python run.py
-```
-
-## 配置文件说明
-
-config.yaml示例：
-
-``` yaml
-base_url: http://api.example.com
-test_case_path: testcases/
-report_path: reports/
-log_path: logs/
-```
-
-email_config.yaml示例：
+### 主配置文件 (config/config.yaml)
 
 ```yaml
-smtp_server: smtp.example.com
-smtp_port: 587
-sender: sender@example.com
-password: your_password
-receivers:
-  - receiver1@example.com
-  - receiver2@example.com
+# API基础URL配置
+base_urls:
+  default: "http://api.example.com"
+  platform1: "http://api1.example.com"
+  platform2: "http://api2.example.com"
+
+# 超时设置（秒）
+timeout: 30
+
+# 测试用例文件路径
+test_case_path: "testcases/test_cases.xlsx"  # 或 "testcases/test_cases.yaml"
+
+# 日志路径
+log_path: "logs"
+
+# 报告路径
+report_path: "reports"
+
+# 报告标题
+report_title: "API测试报告"
 ```
+
+### 邮件配置文件 (config/email_config.yaml)
+
+```yaml
+# 发件人配置
+sender: "your-email@example.com"
+password: "your-password"
+smtp_server: "smtp.example.com"
+smtp_port: 587
+
+# 收件人列表
+recipients:
+  - "recipient1@example.com"
+  - "recipient2@example.com"
+
+# 仅在测试失败时发送邮件
+send_on_fail_only: true
+```
+
+## 测试用例格式
+
+### Excel格式
+
+创建一个Excel文件，包含以下列：
+
+- case_id: 用例ID
+- scenario: 场景名称
+- step: 步骤序号
+- description: 用例描述
+- api: API路径
+- method: HTTP方法
+- headers: 请求头（JSON格式）
+- data: 请求数据（JSON格式）
+- expected: 预期结果（JSON格式）
+- extract: 变量提取规则（JSON格式）
+
+### YAML格式
+
+```yaml
+- case_id: "test_001"
+  scenario: "用户管理"
+  step: 1
+  description: "创建用户"
+  api: "users"
+  method: "POST"
+  headers:
+    Content-Type: "application/json"
+  data:
+    name: "测试用户"
+    email: "test@example.com"
+  expected:
+    code: 200
+    message: "success"
+  extract:
+    user_id: "data.id"
+```
+
+## 使用方法
+
+1. 准备配置文件和测试用例
+
+2. 运行测试：
+
+```bash
+python run.py -c config/config.yaml -e config/email_config.yaml
+```
+
+## 目录结构
+
+```text
+api-test-framework/
+├── config/
+│   ├── config.yaml
+│   └── email_config.yaml
+├── lib/
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── api_client.py
+│   │   ├── config.py
+│   │   └── test_runner.py
+│   ├── handlers/
+│   │   ├── __init__.py
+│   │   └── test_case_handler.py
+│   ├── reporters/
+│   │   ├── __init__.py
+│   │   ├── html_reporter.py
+│   │   └── email_sender.py
+│   └── utils/
+│       ├── __init__.py
+│       ├── exceptions.py
+│       ├── helpers.py
+│       └── logger.py
+├── logs/
+├── reports/
+├── testcases/
+│   ├── test_cases.xlsx
+│   └── test_cases.yaml
+├── requirements.txt
+├── README.md
+└── run.py
+```
+
+## 开发指南
+
+### 添加新的测试用例处理器
+
+1. 在 `lib/handlers/test_case_handler.py` 中创建新的处理器类
+2. 继承 `BaseTestCaseHandler` 类
+3. 实现 `load_test_cases` 方法
+
+### 自定义报告模板
+
+1. 修改 `lib/reporters/html_reporter.py` 中的HTML模板
+2. 自定义CSS样式
+
+### 添加新的报告类型
+
+1. 在 `lib/reporters/` 目录下创建新的报告生成器
+2. 在 `TestRunner` 中集成新的报告生成器
+
+## 常见问题
+
+1. SSL证书验证失败
+   - 在API请求时设置 `verify_ssl=False`
+
+2. 邮件发送失败
+   - 检查SMTP服务器配置
+   - 确保密码正确
+   - 检查防火墙设置
+
+3. 测试用例格式错误
+   - 检查JSON格式是否正确
+   - 确保所有必要字段都已填写
+
+## 许可证
+
+MIT License
