@@ -19,8 +19,8 @@
 1. 克隆仓库：
 
 ```bash
-git clone https://github.com/yourusername/api-test-framework.git
-cd api-test-framework
+git clone https://github.com/rubih9/test_framework.git
+cd test_framework
 ```
 
 安装依赖：
@@ -125,7 +125,7 @@ python run.py -c config/config.yaml -e config/email_config.yaml
 ## 目录结构
 
 ```text
-api-test-framework/
+test_framework/
 ├── config/
 │   ├── config.yaml
 │   └── email_config.yaml
