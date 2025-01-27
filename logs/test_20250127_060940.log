@@ -1,0 +1,25 @@
+2025-01-27 06:09:40.488 | INFO     | lib.test_runner:run_all_tests:116 - 开始运行测试...
+2025-01-27 06:09:40.562 | INFO     | lib.test_case_handler:load_test_cases:117 - 成功从 testcases/test_cases.xlsx 加载 3 个测试用例
+2025-01-27 06:09:40.575 | INFO     | lib.test_case_handler:load_test_cases:117 - 成功从 testcases/test_cases.xlsx 加载 3 个测试用例
+2025-01-27 06:09:40.589 | INFO     | lib.test_case_handler:load_test_cases:117 - 成功从 testcases/test_cases.xlsx 加载 3 个测试用例
+2025-01-27 06:09:40.589 | INFO     | lib.api_client:request:58 - 发送请求: POST http://api.example.com/api/users
+2025-01-27 06:09:40.589 | DEBUG    | lib.api_client:request:59 - 请求头: {'Content-Type': 'application/json'}
+2025-01-27 06:09:40.589 | DEBUG    | lib.api_client:request:60 - 请求数据: {'name': '测试用户', 'email': 'test@example.com'}
+2025-01-27 06:09:40.589 | DEBUG    | lib.api_client:request:61 - URL参数: None
+2025-01-27 06:09:40.598 | ERROR    | lib.api_client:request:86 - 请求失败: Cannot connect to host api.example.com:80 ssl:default [Name or service not known]
+2025-01-27 06:09:40.598 | ERROR    | lib.test_runner:run_test_case:84 - 测试用例 TC001 执行出错: Cannot connect to host api.example.com:80 ssl:default [Name or service not known]
+2025-01-27 06:09:40.598 | INFO     | lib.api_client:request:58 - 发送请求: GET http://api.example.com/api/users/${user_id}
+2025-01-27 06:09:40.598 | DEBUG    | lib.api_client:request:59 - 请求头: {'Content-Type': 'application/json'}
+2025-01-27 06:09:40.598 | DEBUG    | lib.api_client:request:60 - 请求数据: {}
+2025-01-27 06:09:40.598 | DEBUG    | lib.api_client:request:61 - URL参数: None
+2025-01-27 06:09:40.607 | ERROR    | lib.api_client:request:86 - 请求失败: Cannot connect to host api.example.com:80 ssl:default [Name or service not known]
+2025-01-27 06:09:40.607 | ERROR    | lib.test_runner:run_test_case:84 - 测试用例 TC002 执行出错: Cannot connect to host api.example.com:80 ssl:default [Name or service not known]
+2025-01-27 06:09:40.607 | INFO     | lib.api_client:request:58 - 发送请求: DELETE http://api.example.com/api/users/${user_id}
+2025-01-27 06:09:40.607 | DEBUG    | lib.api_client:request:59 - 请求头: {'Content-Type': 'application/json'}
+2025-01-27 06:09:40.607 | DEBUG    | lib.api_client:request:60 - 请求数据: {}
+2025-01-27 06:09:40.607 | DEBUG    | lib.api_client:request:61 - URL参数: None
+2025-01-27 06:09:40.615 | ERROR    | lib.api_client:request:86 - 请求失败: Cannot connect to host api.example.com:80 ssl:default [Name or service not known]
+2025-01-27 06:09:40.615 | ERROR    | lib.test_runner:run_test_case:84 - 测试用例 TC003 执行出错: Cannot connect to host api.example.com:80 ssl:default [Name or service not known]
+2025-01-27 06:09:40.620 | INFO     | lib.test_runner:generate_report:223 - 测试报告已生成: reports/report_20250127_060940.html
+2025-01-27 06:09:40.623 | INFO     | lib.test_runner:generate_report:223 - 测试报告已生成: reports/report_20250127_060940.html
+2025-01-27 06:09:40.642 | ERROR    | lib.test_runner:send_report_email:254 - 发送邮件失败: [Errno -2] Name or service not known

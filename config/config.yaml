@@ -1,0 +1,12 @@
+base_urls:
+  default: http://api.example.com
+  platform1: http://api1.example.com
+  platform2: http://api2.example.com
+test_case_path: testcases/test_cases.xlsx
+report_path: reports/
+log_path: logs/
+report_title: API自动化测试报告
+timeout: 30
+retry_times: 3
+parallel_execution: false
+environment: test 

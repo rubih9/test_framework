@@ -1,0 +1,9 @@
+smtp_server: smtp.example.com
+smtp_port: 587
+sender: sender@example.com
+password: your_password
+receivers:
+  - receiver1@example.com
+  - receiver2@example.com
+email_title: API自动化测试报告
+send_on_fail_only: true 

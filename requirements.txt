@@ -1,0 +1,12 @@
+requests>=2.31.0
+pandas>=2.0.0
+openpyxl>=3.1.2
+pytest>=7.4.0
+pytest-html>=4.1.1
+python-dotenv>=1.0.0
+loguru>=0.7.0
+jinja2>=3.1.2
+aiohttp>=3.9.1
+python-json-logger>=2.0.7
+yagmail>=0.15.293 
+pyyaml>=6.0
