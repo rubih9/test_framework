@@ -23,7 +23,7 @@ git clone https://github.com/rubih9/test_framework.git
 cd test_framework
 ```
 
-安装依赖：
+2. 安装依赖：
 
 ```bash
 pip install -r requirements.txt
