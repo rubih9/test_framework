@@ -78,7 +78,7 @@ send_on_fail_only: true
 
 ### Excel格式
 
-创建一个Excel文件，包含以下列：
+创建一个Excel文件，包含以下列（testcase中有可参考内容）：
 
 - case_id: 用例ID
 - scenario: 场景名称
@@ -156,24 +156,6 @@ test_framework/
 ├── README.md
 └── run.py
 ```
-
-## 开发指南
-
-### 添加新的测试用例处理器
-
-1. 在 `lib/handlers/test_case_handler.py` 中创建新的处理器类
-2. 继承 `BaseTestCaseHandler` 类
-3. 实现 `load_test_cases` 方法
-
-### 自定义报告模板
-
-1. 修改 `lib/reporters/html_reporter.py` 中的HTML模板
-2. 自定义CSS样式
-
-### 添加新的报告类型
-
-1. 在 `lib/reporters/` 目录下创建新的报告生成器
-2. 在 `TestRunner` 中集成新的报告生成器
 
 ## 常见问题
 
